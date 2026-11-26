@@ -3,6 +3,7 @@
 **Group Name:** flux
 
 ## Members
-- Member 1 Full Name - Role
-- Member 2 Full Name - Role
-- Member 3 Full Name - Role
+- Maglinte, Nathaniel Rhey - Project Lead
+- Ramirez, Christian Joseph - QA / Documentation
+- Lastimos, Narzues Anthony - Backend / Database 
+- Rodrigo, Coolbay John - Frontend 
