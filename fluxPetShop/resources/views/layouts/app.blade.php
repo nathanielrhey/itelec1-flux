@@ -12,63 +12,7 @@
     @include('layouts.styles')
 </head>
 <body>
-    <header class="topbar">
-        <div class="container topbar-inner">
-            <a href="{{ route('home') }}" class="brand">
-                <img src="{{ asset('images/flux-icon.png') }}" alt="FLUX Pet Shop Logo" class="brand-logo">
-                <span class="brand-text">
-                    <span>FLUX</span>
-                    <span class="brand-sub">Pet Shop</span>
-                </span>
-            </a>
-
-            <nav class="nav" aria-label="Main navigation">
-                <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
-                    Home
-                </a>
-                <a href="{{ route('catalog') }}" class="nav-link {{ request()->routeIs('catalog') ? 'active' : '' }}">
-                    Catalog
-                </a>
-                <a href="{{ route('orders.create') }}" class="nav-link {{ request()->routeIs('orders.create') ? 'active' : '' }}">
-                    Place Order
-                </a>
-                <a href="{{ route('orders.index') }}" class="nav-link {{ request()->routeIs('orders.index') ? 'active' : '' }}">
-                    Orders
-                </a>
-                <a href="{{ route('orders.status') }}" class="nav-link {{ request()->routeIs('orders.show') ? 'active' : '' }}">
-                    Order Status
-                    @if (session('last_order_reference'))
-                        <span class="badge badge-info">{{ session('last_order_reference') }}</span>
-                    @endif
-                </a>
-            </nav>
-        </div>
-
-        @if (session()->has('visitor_name') || session()->has('last_order_reference'))
-            <div class="session-bar">
-                <div class="container session-bar-inner">
-                    <div class="session-details">
-                        @if (session('visitor_name'))
-                            <span>Welcome back, <strong>{{ session('visitor_name') }}</strong></span>
-                        @endif
-                        @if (session('last_order_reference') && session('last_order_id'))
-                            <span>
-                                Latest Reference:
-                                <a href="{{ route('orders.show', session('last_order_id')) }}">
-                                    <strong>{{ session('last_order_reference') }}</strong>
-                                </a>
-                            </span>
-                        @endif
-                    </div>
-
-                    <form method="POST" action="{{ route('session.forget') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm">Clear Session</button>
-                    </form>
-                </div>
-            </div>
-        @endif
-    </header>
+    @include('layouts.nav')
 
     <main class="container main-content">
         @if (session('success'))

@@ -64,9 +64,44 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        padding: 14px 0;
-        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px 0;
+        position: relative;
+    }
+
+    .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 6px;
+        flex-shrink: 0;
+    }
+
+    .nav-toggle span {
+        display: block;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    /* Hamburger → X animation */
+    .nav-toggle.is-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle.is-open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    .nav-toggle.is-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
     }
 
     .brand {
@@ -150,7 +185,7 @@
 
     .landing-title {
         margin: 0 0 10px;
-        font-size: 2rem;
+        font-size: clamp(1.4rem, 5vw, 2rem);
         line-height: 1.2;
         font-weight: 800;
     }
@@ -265,16 +300,219 @@
             padding: 22px;
         }
 
+        .landing-logo-box {
+            padding: 16px;
+        }
+
         .stats-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+
+        .search-form input[type="search"],
+        .search-form .form-control {
+            width: 100%;
+        }
+
+        .search-form {
+            width: 100%;
+        }
     }
 
+    @media (max-width: 640px) {
+        .container {
+            padding: 0 14px;
+        }
+
+        .nav-toggle {
+            display: flex;
+        }
+
+        .nav {
+            display: none;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 4px;
+            position: absolute;
+            top: calc(100% + 1px);
+            left: 0;
+            right: 0;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            border-top: 1px solid var(--border);
+            padding: 10px 14px 14px;
+            z-index: 30;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav.nav-open {
+            display: flex;
+        }
+
+        .nav-link {
+            padding: 11px 14px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            border: 1px solid transparent;
+        }
+
+        .nav-link.active {
+            border-color: #cce5df;
+        }
+
+        .session-bar-inner {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .landing-hero {
+            padding: 18px 16px;
+            margin-bottom: 18px;
+        }
+
+        .landing-title {
+            font-size: 1.35rem;
+        }
+
+        .landing-copy {
+            font-size: 0.93rem;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            padding: 12px 14px;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+        }
+
+        .filter-bar {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .filter-pills {
+            gap: 6px;
+        }
+
+        .filter-pill {
+            padding: 6px 12px;
+            font-size: 0.82rem;
+        }
+
+        .search-form {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .search-form input,
+        .search-form .form-control {
+            width: 100% !important;
+        }
+
+        .page-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .page-header > div:last-child,
+        .page-header > a:last-child {
+            align-self: flex-start;
+        }
+
+        .card {
+            padding: 16px;
+        }
+
+        .product-name {
+            font-size: 0.97rem;
+        }
+
+        .dl-grid {
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+
+        .dl-grid dt {
+            margin-bottom: 0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .dl-grid dd {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dl-grid dd:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .form-layout {
+            gap: 16px;
+        }
+
+        .grid-2,
+        .grid-3 {
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .main-content {
+            padding: 18px 0 36px;
+        }
+
+        th, td {
+            padding: 10px 10px;
+            font-size: 0.84rem;
+        }
+
+        .btn {
+            padding: 9px 14px;
+            font-size: 0.88rem;
+        }
+
+        .btn-sm {
+            padding: 6px 10px;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .stats-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .brand-text span:first-child {
+            font-size: 1rem;
+        }
+    }
+
+    /* Desktop nav — hidden on mobile via the 640px block below */
     .nav {
-        display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         flex-wrap: wrap;
+    }
+
+    @media (min-width: 641px) {
+        .nav {
+            display: flex;
+        }
     }
 
     .nav-link {
@@ -335,7 +573,7 @@
 
     .page-title {
         margin: 0;
-        font-size: 1.7rem;
+        font-size: clamp(1.25rem, 5vw, 1.7rem);
         font-weight: 700;
         line-height: 1.25;
     }
@@ -594,7 +832,7 @@
 
     .dl-grid {
         display: grid;
-        grid-template-columns: 150px 1fr;
+        grid-template-columns: minmax(100px, 150px) 1fr;
         gap: 10px 14px;
         margin: 0;
         font-size: 0.94rem;
@@ -646,5 +884,91 @@
         color: var(--muted);
         font-size: 0.86rem;
         text-align: center;
+    }
+
+    /* ── Contact Page ── */
+    .contact-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+        gap: 24px;
+        align-items: start;
+    }
+
+    .contact-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .contact-info-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .contact-info-list li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .contact-icon {
+        font-size: 1.3rem;
+        line-height: 1.4;
+        flex-shrink: 0;
+    }
+
+    .contact-info-list strong {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 2px;
+    }
+
+    .contact-info-list p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.5;
+    }
+
+    .contact-note-card {
+        background: var(--primary-soft);
+        border-color: #cce5df;
+    }
+
+    .contact-note-text {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--primary-dark);
+        line-height: 1.6;
+    }
+
+    .contact-form-footer {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+    }
+
+    .required-star {
+        color: var(--danger);
+        font-weight: 700;
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 130px;
+    }
+
+    @media (max-width: 860px) {
+        .contact-layout {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
