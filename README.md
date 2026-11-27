@@ -27,3 +27,9 @@
    ```bash
    php artisan serve
    ```
+
+## M5 Management and API
+- Open `/admin/products` to create, edit, and delete catalog products. Products with order history cannot be deleted.
+- Open `/admin/orders` to change order statuses among Pending, Ready, and Completed.
+- `GET /api/catalog` returns the current products and their categories as JSON.
+- Run `php artisan route:list` from `fluxPetShop` to inspect the registered admin and API routes.

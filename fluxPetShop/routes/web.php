@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StorefrontController;
@@ -20,3 +22,11 @@ Route::post('/session/forget', [OrderController::class, 'forgetVisitor'])->name(
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', fn () => redirect()->route('admin.products.index'))->name('dashboard');
+    Route::resource('products', AdminProductController::class)->except(['show']);
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])
+        ->name('orders.status');
+});

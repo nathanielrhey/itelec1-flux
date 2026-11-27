@@ -36,6 +36,9 @@
             <a href="{{ route('contact.create') }}" class="nav-link {{ request()->routeIs('contact.*') ? 'active' : '' }}">
                 Contact Us
             </a>
+            <a href="{{ route('admin.products.index') }}" class="nav-link {{ request()->routeIs('admin.*') ? 'active' : '' }}">
+                Admin
+            </a>
         </nav>
     </div>
 
